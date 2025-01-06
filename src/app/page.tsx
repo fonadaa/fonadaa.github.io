@@ -3,6 +3,7 @@
 import LoginButton from "./auth/LoginButton";
 import { signIn } from "next-auth/react";
 import { Orbitron } from "next/font/google";
+import styles from './typing.module.css';
 
 const orbitron = Orbitron({ subsets: ["latin"] });
 
@@ -15,8 +16,8 @@ export default function Page() {
             Welcome to GenAI
           </h1>
           <h2 className="text-2xl text-gray-300">Fonada</h2>
-          <p className="text-gray-400 max-w-md mx-auto">
-            Next generation of AI-powered voice solutions
+          <p className={`${styles.typingAnimation} text-gray-400 max-w-md mx-auto`}>
+         Experience the next generation of AI-powered voice solutions 
           </p>
         </div>
 
