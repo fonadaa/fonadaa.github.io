@@ -4,6 +4,18 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Image from "next/image";
+import Script from 'next/script';
+
+// Add type declaration at the top
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'elevenlabs-convai': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        'agent-id': string;
+      }
+    }
+  }
+}
 
 export default function MainPage() {
   const { data: session, status } = useSession();
@@ -40,7 +52,7 @@ export default function MainPage() {
             </div>
           </div>
 
-          <div className="flex justify-end mb-6">
+          <div className="flex justify-end mb-8 mr-4">
             <button
               onClick={() => signOut({ callbackUrl: '/' })}
               className="flex items-center justify-center gap-3 px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300"
@@ -51,14 +63,27 @@ export default function MainPage() {
           </div>
 
           <div className="space-y-6">
-            <div className="p-6 bg-gray-700/30 rounded-xl">
-              <h2 className="text-xl font-semibold mb-4">Your Profile</h2>
-              <p className="text-gray-300">Name: {session?.user?.name}</p>
-              <p className="text-gray-300">Email: {session?.user?.email}</p>
+            <div className="p-6 bg-gray-700/30 rounded-xl min-h-[400px] relative">
+              <div className="space-y-3">
+                <h2 className="text-xl font-semibold mb-4">Your Profile</h2>
+                <p className="text-gray-300">Name: {session?.user?.name}</p>
+                <p className="text-gray-300">Email: {session?.user?.email}</p>
+              </div>
+              
+              {/* ElevenLabs Widget */}
+              <div className="absolute bottom-10 right-10 z-10 space-x-3">
+                <elevenlabs-convai className="p-3" agent-id="0IlMlXLJhvwqxws39dA5" />
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* ElevenLabs Script */}
+      <Script 
+        src="https://elevenlabs.io/convai-widget/index.js" 
+        strategy="lazyOnload"
+      />
     </main>
   );
 }
