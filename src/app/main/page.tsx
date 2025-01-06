@@ -39,20 +39,22 @@ export default function MainPage() {
               />
             </div>
           </div>
+
+          <div className="flex justify-end mb-6">
+            <button
+              onClick={() => signOut({ callbackUrl: '/' })}
+              className="flex items-center justify-center gap-3 px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300"
+            >
+              <LogoutIcon className="w-5 h-5" />
+              Sign Out
+            </button>
+          </div>
+
           <div className="space-y-6">
             <div className="p-6 bg-gray-700/30 rounded-xl">
               <h2 className="text-xl font-semibold mb-4">Your Profile</h2>
+              <p className="text-gray-300">Name: {session?.user?.name}</p>
               <p className="text-gray-300">Email: {session?.user?.email}</p>
-            </div>
-            
-            <div className="max-w-md mx-auto">
-              <button
-                onClick={() => signOut({ callbackUrl: '/' })}
-                className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300"
-              >
-                <LogoutIcon className="w-5 h-5" />
-                Sign Out
-              </button>
             </div>
           </div>
         </div>
