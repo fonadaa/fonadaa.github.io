@@ -1,11 +1,7 @@
-// src/app/auth/LoginButton.tsx
 "use client";
-
 import { signIn, signOut, useSession } from "next-auth/react";
-
 export default function LoginButton() {
   const { data: session } = useSession();
-
   return (
     <div className="w-full max-w-md mx-auto">
       {session ? (
@@ -33,7 +29,6 @@ export default function LoginButton() {
     </div>
   );
 }
-
 // Google icon component
 const GoogleIcon = ({ className = "w-6 h-6" }) => (
   <svg className={className} viewBox="0 0 24 24">
@@ -43,7 +38,6 @@ const GoogleIcon = ({ className = "w-6 h-6" }) => (
     />
   </svg>
 );
-
 // Logout icon component
 const LogoutIcon = ({ className = "w-6 h-6" }) => (
   <svg

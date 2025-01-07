@@ -5,17 +5,12 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Image from "next/image";
 import Script from 'next/script';
+import dynamic from "next/dynamic";
+import React from "react";
 
-// Add type declaration at the top
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'elevenlabs-convai': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        'agent-id': string;
-      }
-    }
-  }
-}
+const ElevenLabsWidget = dynamic(() => Promise.resolve(() => {
+  return React.createElement("elevenlabs-convai", { className: "p-3", "agent-id": "0IlMlXLJhvwqxws39dA5" });
+}), { ssr: false });
 
 export default function MainPage() {
   const { data: session, status } = useSession();
@@ -69,10 +64,8 @@ export default function MainPage() {
                 <p className="text-gray-300">Name: {session?.user?.name}</p>
                 <p className="text-gray-300">Email: {session?.user?.email}</p>
               </div>
-              
-              {/* ElevenLabs Widget */}
               <div className="absolute bottom-10 right-10 z-10 space-x-3">
-                <elevenlabs-convai className="p-3" agent-id="0IlMlXLJhvwqxws39dA5" />
+                <ElevenLabsWidget />
               </div>
             </div>
           </div>
@@ -80,13 +73,18 @@ export default function MainPage() {
       </div>
 
       {/* ElevenLabs Script */}
-      <Script 
-        src="https://elevenlabs.io/convai-widget/index.js" 
+      <Script
+        src="https://elevenlabs.io/convai-widget/index.js"
         strategy="lazyOnload"
       />
     </main>
   );
 }
+
+
+
+
+
 
 // Logout icon component
 const LogoutIcon = ({ className = "w-6 h-6" }) => (
