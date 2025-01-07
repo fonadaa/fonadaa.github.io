@@ -11,6 +11,11 @@ const handler = NextAuth({
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID!,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          redirect_uri: `${process.env.NEXTAUTH_PUBLIC_BASE_URL}/api/auth/callback/facebook`
+        }
+      }
     }),
   ],
   pages: {
