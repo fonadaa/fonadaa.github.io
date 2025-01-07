@@ -74,7 +74,7 @@ export default function MainPage() {
 
       {/* ElevenLabs Script */}
       <Script
-        src="https://elevenlabs.io/convai-widget/index.js"
+        src="/scripts/elevenlabs-widget.js"
         strategy="lazyOnload"
       />
     </main>
