@@ -25,7 +25,7 @@ const handler = NextAuth({
   callbacks: {
     async redirect({ url, baseUrl }) {
       // Redirect to /main after successful login
-      return url.startsWith(baseUrl) ? '/main' : baseUrl + '/main'
+      return url.startsWith(baseUrl) ? '/dashboard' : baseUrl + '/dashboard'
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
