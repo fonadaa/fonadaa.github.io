@@ -3,7 +3,7 @@
 import LoginButton from "../auth/LoginButton";
 import { signIn } from "next-auth/react";
 import { Orbitron } from "next/font/google";
-import styles from '../typing.module.css';
+import styles from './typing.module.css';
 
 const orbitron = Orbitron({ subsets: ["latin"] });
 
